@@ -8,3 +8,6 @@ PORT_NUMBER = 8000
 
 # csv
 CSV_ADDRESS = "./../static/csv/"
+
+# number of sensor data
+SENSOR_DATA_NUMBER = 1
