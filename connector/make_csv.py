@@ -7,10 +7,12 @@ class CSVMaker:
         address = self.get_csv_address()
         self.change_dir_to_csv(address)
         filename = self.get_filename()
+        self.change_values_to_integer(values)
         self.write_csv(filename, values)
 
     def make_csv_test(self, values):
         filename = 'test.csv'
+        self.change_values_to_integer(values)
         self.write_csv(filename, values)
 
     def get_csv_address(self):
@@ -29,6 +31,10 @@ class CSVMaker:
             else:
                 break
         return filename
+
+    def change_values_to_integer(self, values):
+        for sensor_data in range(len(values)):
+            values[sensor_data] = map(int, values[sensor_data])
 
     def write_csv(self, filename, values):
         with open(filename, 'w') as csv_file:
