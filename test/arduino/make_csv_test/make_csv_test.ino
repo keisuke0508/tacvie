@@ -7,7 +7,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   for(int i = 0; i<100; i++) {
     Serial.println(i);
-    delay(100);
+//    delay(100);
   }
 }
 
