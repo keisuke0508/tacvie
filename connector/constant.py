@@ -13,5 +13,9 @@ SENSOR_DATA_NUMBER = 1
 CSV_PATH = "./../static/csv/"
 VIDEO_PATH = "./../static/video/"
 
+# file name
+CSV_FILE = "test.csv"
+VIDEO_FILE = "test2.mov"
+
 # start wait
-START_WAIT = 5
+START_WAIT = 3

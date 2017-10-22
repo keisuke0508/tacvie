@@ -49,16 +49,24 @@ class CSVMaker:
 
 class CSVReader:
     def read_csv(self):
-        pass
+        path = self.get_csv_path()
+        self.change_dir_to_csv(path)
+        filename = constant.CSV_FILE
+        csv_data = self.get_data_from_csv(filename)
+        self.change_number_to_string(csv_data)
+        return csv_data
 
     def read_csv_test(self):
-        filename = 'test.csv'
+        filename = constant.CSV_FILE
         csv_data = self.get_data_from_csv(filename)
         self.change_number_to_string(csv_data)
         return csv_data
 
     def get_csv_path(self):
         return constant.CSV_PATH
+
+    def change_dir_to_csv(self, path):
+        os.chdir(path)
 
     def get_data_from_csv(self, filename):
         data = []
@@ -86,5 +94,5 @@ class VideoPlayer:
 
     @classmethod
     def get_video(self):
-        filename = constant.VIDEO_PATH + "test2.mov"
+        filename = constant.VIDEO_PATH + constant.VIDEO_FILE
         return cv2.VideoCapture(filename)
