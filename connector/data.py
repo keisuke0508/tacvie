@@ -1,13 +1,43 @@
-# arduino serial
-DEVICE_NAME = "/dev/cu.usbmodem1421"
-BAUD_RATE = 9600
+import csv
+import os
+import data
 
-# udp connect
-IP_ADDRESS = "192.168.1.4"
-PORT_NUMBER = 8000
+class CSVMaker:
+    def make_csv(self, values):
+        address = self.get_csv_address()
+        self.change_dir_to_csv(address)
+        filename = self.get_filename()
+        self.change_values_to_integer(values)
+        self.write_csv(filename, values)
 
-# csv
-CSV_ADDRESS = "./../static/csv/"
+    def make_csv_test(self, values):
+        filename = 'test.csv'
+        self.change_values_to_integer(values)
+        self.write_csv(filename, values)
 
-# number of sensor data
-SENSOR_DATA_NUMBER = 1
+    def get_csv_address(self):
+        return data.CSV_ADDRESS
+
+    def change_dir_to_csv(self, address):
+        os.chdir(address)
+
+    def get_filename(self):
+        num = 1
+        filename = ''
+        while True:
+            filename = 'data' + str(num) + '.csv'
+            if os.path.exists(filename) == True:
+                num = num + 1
+            else:
+                break
+        return filename
+
+    def change_values_to_integer(self, values):
+        for sensor_data in range(len(values)):
+            values[sensor_data] = map(int, values[sensor_data])
+
+    def write_csv(self, filename, values):
+        with open(filename, 'w') as csv_file:
+            csv_file = open(filename, 'w')
+            csv_writer = csv.writer(csv_file, lineterminator='\n')
+            csv_writer.writerows(values)
