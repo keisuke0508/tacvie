@@ -1,6 +1,6 @@
 import csv
 import os
-import data
+import constant
 
 class CSVMaker:
     def make_csv(self, values):
@@ -16,7 +16,7 @@ class CSVMaker:
         self.write_csv(filename, values)
 
     def get_csv_address(self):
-        return data.CSV_ADDRESS
+        return constant.CSV_ADDRESS
 
     def change_dir_to_csv(self, address):
         os.chdir(address)
@@ -38,6 +38,5 @@ class CSVMaker:
 
     def write_csv(self, filename, values):
         with open(filename, 'w') as csv_file:
-            csv_file = open(filename, 'w')
             csv_writer = csv.writer(csv_file, lineterminator='\n')
             csv_writer.writerows(values)

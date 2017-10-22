@@ -1,4 +1,4 @@
-import data
+import constant
 import serial
 import socket
 
@@ -9,7 +9,7 @@ class SerialConnector:
 
     @classmethod
     def get_connection(self):
-        return serial.Serial(data.DEVICE_NAME, data.BAUD_RATE)
+        return serial.Serial(constant.DEVICE_NAME, constant.BAUD_RATE)
 
 
 class UDPConnector:
@@ -19,11 +19,11 @@ class UDPConnector:
 
     @classmethod
     def get_dstip(self):
-        return data.IP_ADDRESS
+        return constant.IP_ADDRESS
 
     @classmethod
     def get_dstport(self):
-        return data.PORT_NUMBER
+        return constant.PORT_NUMBER
 
     @classmethod
     def make_mysocket(self):

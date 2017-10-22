@@ -1,6 +1,6 @@
-import data
+import constant
 from connect import *
-import make_csv
+import data
 
 def main():
     arduino_serial = SerialConnector.get_connection()
@@ -11,13 +11,13 @@ def main():
     while True:
         try:
             values = []
-            for sensor in range(data.SENSOR_DATA_NUMBER):
+            for sensor in range(constant.SENSOR_DATA_NUMBER):
                 value = SerialConnector.get(arduino_serial)
                 UDPConnector.send(value, dstip, dstport, mysocket)
                 values.append(value)
             csv_data.append(values)
         except:
-            make_csv.CSVMaker().make_csv_test(csv_data)
+            data.CSVMaker().make_csv_test(csv_data)
             break;
 
 if __name__ == "__main__":
