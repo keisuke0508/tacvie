@@ -1,4 +1,5 @@
 import cv2
+import time
 import constant
 from connect import *
 import data
@@ -8,6 +9,7 @@ def main():
     video = data.VideoPlayer.get_video()
     csv_data = data.CSVReader().read_csv_test()
     arduino_serial = SerialConnector.get_connection()
+    start_wait = True
     while video.isOpened():
         ret, frame = video.read()
         cv2.imshow("Frame", frame)
@@ -16,6 +18,11 @@ def main():
         for sensor in range(constant.SENSOR_DATA_NUMBER):
             arduino_serial.write(csv_data[value_number][sensor] + '/')
         value_number += 1
+        if start_wait == True:
+            time.sleep(constant.START_WAIT)
+            start_wait = False
+        else:
+            pass
     video.release()
     cv2.destroyAllWindows()
 
