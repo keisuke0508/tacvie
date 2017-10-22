@@ -5,13 +5,13 @@ class Test:
         pass
 
     def main(self):
-        cap = cv2.VideoCapture("../../../static/video/test.mov")
-        while cap.isOpened():
-            ret, frame = cap.read()
+        video = self.get_video()
+        while video.isOpened():
+            ret, frame = video.read()
             cv2.imshow("Frame", frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-        cap.release()
+        video.release()
         cv2.destroyAllWindows()
 
 
@@ -21,4 +21,3 @@ class Test:
 
 if __name__ == "__main__":
     Test().main()
-                            

@@ -1,3 +1,4 @@
+import time
 import csv
 import serial
 
@@ -20,9 +21,10 @@ class Test:
 
     def write_data(self, data):
         for row in data:
-            row = map(str, row)
             for x in range(len(row)):
-                self.arduino_serial.write(row[x])
+                self.arduino_serial.write(row[x] + '/')
+                time.sleep(0.01)
+
 
 if __name__ == '__main__':
     arduino_serial = serial.Serial('/dev/cu.usbmodem1421', 9600)
