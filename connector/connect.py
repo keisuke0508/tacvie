@@ -37,7 +37,6 @@ class SensorDataReceiver:
         string, addr = self.set_sender(mysocket)
         json_data = self.get_json_data(string)
         data = self.get_socket_data(json_data)
-        self.change_number_to_string(data)
         return data
 
     @classmethod
@@ -50,11 +49,7 @@ class SensorDataReceiver:
 
     @classmethod
     def get_socket_data(self, json_data):
-        return json_data[constant.RECEIVE_DATA]
-
-    @classmethod
-    def change_number_to_string(self, data):
-        return str(data)
+        return str(json_data[constant.RECEIVE_DATA])
 
     @classmethod
     def get_port_number(self):

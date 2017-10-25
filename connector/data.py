@@ -12,7 +12,7 @@ class CSVMaker:
         self.write_csv(filename, values)
 
     def make_csv_test(self, values):
-        filename = 'test.csv'
+        filename = constant.CSV_TEST_FILE
         self.change_values_to_number(values)
         self.write_csv(filename, values)
 

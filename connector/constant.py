@@ -19,6 +19,7 @@ VIDEO_PATH = "./../static/video/"
 
 # file name
 CSV_FILE = "test.csv"
+CSV_TEST_FILE = "test.csv"
 VIDEO_FILE = "test2.mov"
 
 # start wait
