@@ -6,6 +6,10 @@ BAUD_RATE = 9600
 IP_ADDRESS = "192.168.1.4"
 PORT_NUMBER = 8000
 
+# for sending data
+HOST_NAME = 'localhost'
+BUFFER_SIZE = 4096
+
 # number of sensor data
 SENSOR_DATA_NUMBER = 1
 
@@ -19,3 +23,6 @@ VIDEO_FILE = "test2.mov"
 
 # start wait
 START_WAIT = 3
+
+STRING_CODE = 'utf-8'
+RECEIVE_DATA = 'SOCKET'

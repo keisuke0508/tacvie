@@ -4,7 +4,16 @@ import constant
 from connect import *
 import data
 
-def main():
+def main_senbay_ver():
+    mysocket = SensorDataReceiver.make_mysocket()
+    SensorDataReceiver.bind_mysocket(mysocket)
+    # arduino_serial = SerialConnector.get_connection()
+    while True:
+        sensor_data = SensorDataReceiver.receive_sensor_data(mysocket)
+        # arduino_serial.write(sensor_data + '/')
+        print sensor_data
+
+def main_csv_ver():
     value_number = 0
     video = data.VideoPlayer.get_video()
     csv_data = data.CSVReader().read_csv()
@@ -27,4 +36,5 @@ def main():
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    main()
+    main_senbay_ver()
+    # main_csv_ver()
