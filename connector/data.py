@@ -86,7 +86,7 @@ class VideoPlayer:
         video = self.get_video()
         while video.isOpened():
             ret, frame = video.read()
-            cv2.imshow("Frame", frame)
+            cv2.imshow(constant.FRAME_TITLE, frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         video.release()

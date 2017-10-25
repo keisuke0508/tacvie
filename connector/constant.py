@@ -25,5 +25,9 @@ VIDEO_FILE = "test2.mov"
 # start wait
 START_WAIT = 3
 
+# receiver data
 STRING_CODE = 'utf-8'
 RECEIVE_DATA = 'SOCKET'
+
+# video frame
+FRAME_TITLE = "FRAME"
