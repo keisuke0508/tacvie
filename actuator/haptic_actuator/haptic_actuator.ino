@@ -1,5 +1,6 @@
 #include <Servo.h>
 
+int val = 0;
 char data[10];
 Servo myservo;
 
@@ -13,11 +14,10 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   get_data();
-  Serial.println(data);
   actuate_servo();
 }
 
-void get_data() {
+char get_data() {
   int num = 0;
   while(true) {
     if(Serial.available() > 0) {
@@ -34,13 +34,15 @@ void get_data() {
 
 void actuate_servo() {
   int val = atoi(data);
-  if(val <= 50) {
-    myservo.write(0);
-  }else if(val > 50 && val <= 800) {
-    val = map(val, 50, 800, 0, 180);
-    myservo.write(val);
+  int angle;
+  if(val == 0 || val > 800) {
+    angle = 180;
+  }else if(val <= 50) {
+    angle = 0;
   }else {
-    myservo.write(180);
+    angle = map(val, 50, 800, 0, 180);
   }
+  myservo.write(angle);
+  Serial.println(angle);
 }
 

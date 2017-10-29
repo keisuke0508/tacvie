@@ -7,11 +7,14 @@ import data
 def main_senbay_ver():
     mysocket = SensorDataReceiver.make_mysocket()
     SensorDataReceiver.bind_mysocket(mysocket)
-    # arduino_serial = SerialConnector.get_connection()
+    arduino_serial = SerialConnector.get_connection()
     while True:
-        sensor_data = SensorDataReceiver.receive_sensor_data(mysocket)
-        # arduino_serial.write(sensor_data + '/')
-        print sensor_data
+        try:
+            sensor_data = SensorDataReceiver.receive_sensor_data(mysocket)
+            arduino_serial.write(sensor_data + '/')
+            print sensor_data
+        except:
+            pass
 
 def main_csv_ver():
     value_number = 0

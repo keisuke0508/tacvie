@@ -1,5 +1,5 @@
 # arduino serial
-DEVICE_NAME = "/dev/cu.usbmodem1421"
+DEVICE_NAME = "/dev/cu.usbmodem1411"
 BAUD_RATE = 9600
 
 # udp connect

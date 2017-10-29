@@ -1,19 +1,21 @@
 #include <Servo.h>
 
 Servo myservo;
-int val;
 
 void setup() {
   // put your setup code here, to run once:
+  myservo.write(0);
   myservo.attach(9);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  val = 0;
-  myservo.write(val);
-  delay(1000);
-  val = 180;
-  myservo.write(val);
-  delay(1000);
+  for(int i = 0; i < 180; i++) {
+    myservo.write(i);
+    delay(10);
+  }
+  for(int i = 0; i > 0; i=i-1) {
+    myservo.write(i);
+    delay(10);
+  }
 }
