@@ -57,7 +57,7 @@ class CSVReader:
         return csv_data
 
     def read_csv_test(self):
-        filename = constant.CSV_FILE
+        filename = constant.CSV_TEST_FILE
         csv_data = self.get_data_from_csv(filename)
         self.change_number_to_string(csv_data)
         return csv_data
@@ -83,7 +83,7 @@ class CSVReader:
 
 class VideoPlayer:
     def play_video_test(self):
-        video = self.get_video()
+        video = self.get_video_test()
         while video.isOpened():
             ret, frame = video.read()
             cv2.imshow(constant.FRAME_TITLE, frame)
@@ -95,4 +95,9 @@ class VideoPlayer:
     @classmethod
     def get_video(self):
         filename = constant.VIDEO_PATH + constant.VIDEO_FILE
+        return cv2.VideoCapture(filename)
+
+    @classmethod
+    def get_video_test(self):
+        filename = constant.VIDEO_TEST_FILE
         return cv2.VideoCapture(filename)

@@ -1,5 +1,5 @@
 # arduino serial
-DEVICE_NAME = "/dev/cu.usbmodem1411"
+DEVICE_NAME = "/dev/cu.usbmodem1421"
 BAUD_RATE = 9600
 
 # udp connect
@@ -21,6 +21,7 @@ VIDEO_PATH = "./../static/video/"
 CSV_FILE = "test.csv"
 CSV_TEST_FILE = "test.csv"
 VIDEO_FILE = "test2.mov"
+VIDEO_TEST_FILE = "test.mov"
 
 # start wait
 START_WAIT = 3

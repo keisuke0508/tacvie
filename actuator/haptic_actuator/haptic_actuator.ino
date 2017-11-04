@@ -1,12 +1,13 @@
 #include <Servo.h>
 
-int val = 0;
+const int pin = 9;
 char data[10];
 Servo myservo;
 
 void setup() {
   // put your setup code here, to run once:
-  myservo.attach(9);
+  pinMode(pin, OUTPUT);
+  myservo.attach(pin);
   myservo.write(0);
   Serial.begin(9600);
 }

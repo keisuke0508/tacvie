@@ -13,5 +13,5 @@ void loop() {
   double frs = r * volt / (5.0 - volt);
   double fg = 880.79 / frs + 47.96;
   Serial.println(fg);
-  delay(1000);
+  delay(100);
 }
