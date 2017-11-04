@@ -28,7 +28,18 @@ START_WAIT = 3
 
 # receiver data
 STRING_CODE = 'utf-8'
-RECEIVE_DATA = 'SOCKET'
+SOCKET = 'SOCKET'
+SPEED = 'SPEE'
+WIND = 'WIND'
+
+# max and min data
+MAX_ANGLE = 180
+MIN_ANGLE = 0
+MAX_PRESSURE = 800
+MIN_PRESSURE = 25
+MAX_EIGHT_BIT = 255
+MAX_SPEED = 8
+
 
 # video frame
 FRAME_TITLE = "FRAME"

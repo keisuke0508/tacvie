@@ -5,21 +5,21 @@ import constant
 from connect import *
 import data
 
-def main_senbay_ver():
+def haptic_senbay_ver():
     mysocket = SensorDataReceiver.make_mysocket()
     SensorDataReceiver.bind_mysocket(mysocket)
     arduino_serial = SerialConnector.get_connection()
     while True:
         try:
-            sensor_data = SensorDataReceiver.receive_sensor_data(mysocket)
-            arduino_serial.write(sensor_data + '/')
+            sensor_data = HapticDataReceiver.receive_sensor_data(mysocket)
+            arduino_serial.write(str(sensor_data) + '/')
             print sensor_data
         except KeyboardInterrupt:
             sys.exit()
         except:
             arduino_serial.write('48.13/')
 
-def main_csv_ver():
+def haptic_csv_ver():
     value_number = 0
     # video = data.VideoPlayer.get_video()
     # csv_data = data.CSVReader().read_csv()
@@ -45,6 +45,33 @@ def main_csv_ver():
     video.release()
     cv2.destroyAllWindows()
 
+def bicycle_senbay_ver():
+    mysocket = SensorDataReceiver.make_mysocket()
+    SensorDataReceiver.bind_mysocket(mysocket)
+    arduino_serial = SerialConnector.get_connection()
+    while True:
+        try:
+            sensor_data = BicycleDataReceiver.receive_sensor_data(mysocket)
+            arduino_serial.write(str(sensor_data) + '/')
+            print sensor_data
+        except KeyboardInterrupt:
+            sys.exit()
+        except:
+            arduino_serial.write('0/')
+
+def manage(act):
+    if act == 'h' or act == 'haptic':
+        haptic_senbay_ver()
+        # haptic_csv_ver()
+    elif act == 'b' or act == 'bicycle':
+        bicycle_senbay_ver()
+    else:
+        main()
+
+def main():
+    print 'input h or b (haptic or bicycle).'
+    act = raw_input()
+    manage(act)
+
 if __name__ == "__main__":
-    main_senbay_ver()
-    # main_csv_ver()
+    main()

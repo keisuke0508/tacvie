@@ -33,23 +33,12 @@ class UDPConnector:
 
 class SensorDataReceiver:
     @classmethod
-    def receive_sensor_data(self, mysocket):
-        string, addr = self.set_sender(mysocket)
-        json_data = self.get_json_data(string)
-        data = self.get_socket_data(json_data)
-        return data
-
-    @classmethod
     def set_sender(self, mysocket):
         return mysocket.recvfrom(self.get_buffer_size())
 
     @classmethod
     def get_json_data(self, string):
         return json.loads(string.decode(constant.STRING_CODE))
-
-    @classmethod
-    def get_socket_data(self, json_data):
-        return str(json_data[constant.RECEIVE_DATA])
 
     @classmethod
     def get_port_number(self):
@@ -70,3 +59,47 @@ class SensorDataReceiver:
     @classmethod
     def bind_mysocket(self, mysocket):
         return mysocket.bind((self.get_host_name(), self.get_port_number()))
+
+
+class HapticDataReceiver(SensorDataReceiver):
+    @classmethod
+    def receive_sensor_data(self, mysocket):
+        string, addr = self.set_sender(mysocket)
+        json_data = self.get_json_data(string)
+        data = self.get_socket_data(json_data)
+        data = self.change_data_to_angle(data)
+        return data
+
+    @classmethod
+    def get_socket_data(self, json_data):
+        return json_data[constant.SOCKET]
+
+    @classmethod
+    def change_data_to_angle(self, data):
+        data = data * (constant.MAX_ANGLE / constant.MAX_PRESSURE)
+        if data >= constant.MAX_ANGLE:
+            return constant.MAX_ANGLE
+        if data <= constant.MIN_PRESSURE:
+            return constant.MIN_ANGLE
+        return int(data)
+
+
+class BicycleDataReceiver(SensorDataReceiver):
+    @classmethod
+    def receive_sensor_data(self, mysocket):
+        string, addr = self.set_sender(mysocket)
+        json_data = self.get_json_data(string)
+        data = self.get_speed_data(json_data)
+        data = self.change_data_to_eight_bit(data)
+        return data
+
+    @classmethod
+    def get_speed_data(self, json_data):
+        return json_data[constant.SPEED]
+
+    @classmethod
+    def change_data_to_eight_bit(self, data):
+        data = data * (constant.MAX_EIGHT_BIT / constant.MAX_SPEED)
+        if data >= constant.MAX_EIGHT_BIT:
+            return constant.MAX_EIGHT_BIT
+        return int(data)
