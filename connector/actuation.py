@@ -17,7 +17,7 @@ def haptic_senbay_ver():
         except KeyboardInterrupt:
             sys.exit()
         except:
-            arduino_serial.write('48.13/')
+            arduino_serial.write('0/')
 
 def haptic_csv_ver():
     value_number = 0
@@ -69,7 +69,7 @@ def manage(act):
         main()
 
 def main():
-    print 'input h or b (haptic or bicycle).'
+    print "input 'h' or 'b' (haptic or bicycle)."
     act = raw_input()
     manage(act)
 

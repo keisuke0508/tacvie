@@ -35,15 +35,7 @@ char get_data() {
 
 void actuate_servo() {
   int val = atoi(data);
-  int angle;
-  if(val == 0 || val > 800) {
-    angle = 180;
-  }else if(val <= 50) {
-    angle = 0;
-  }else {
-    angle = map(val, 50, 800, 0, 180);
-  }
-  myservo.write(angle);
-  Serial.println(angle);
+//  Serial.println(data);
+  myservo.write(val);
 }
 

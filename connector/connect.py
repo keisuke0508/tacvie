@@ -67,7 +67,7 @@ class HapticDataReceiver(SensorDataReceiver):
         string, addr = self.set_sender(mysocket)
         json_data = self.get_json_data(string)
         data = self.get_socket_data(json_data)
-        # data = self.change_data_to_angle(data)
+        data = self.change_data_to_angle(data)
         return data
 
     @classmethod
@@ -76,11 +76,11 @@ class HapticDataReceiver(SensorDataReceiver):
 
     @classmethod
     def change_data_to_angle(self, data):
-        data = data * (constant.MAX_ANGLE / constant.MAX_PRESSURE)
-        if data >= constant.MAX_ANGLE:
-            return constant.MAX_ANGLE
+        data = (float(data) - constant.MIN_PRESSURE) * (constant.MAX_ANGLE - constant.MIN_ANGLE) / (constant.MAX_PRESSURE - constant.MIN_PRESSURE) + constant.MIN_ANGLE
         if data <= constant.MIN_PRESSURE:
             return constant.MIN_ANGLE
+        if data >= constant.MAX_ANGLE:
+            return constant.MAX_ANGLE
         return int(data)
 
 
