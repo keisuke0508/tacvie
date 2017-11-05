@@ -67,7 +67,7 @@ class HapticDataReceiver(SensorDataReceiver):
         string, addr = self.set_sender(mysocket)
         json_data = self.get_json_data(string)
         data = self.get_socket_data(json_data)
-        data = self.change_data_to_angle(data)
+        # data = self.change_data_to_angle(data)
         return data
 
     @classmethod
