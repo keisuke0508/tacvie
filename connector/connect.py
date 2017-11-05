@@ -5,7 +5,7 @@ import json
 
 class SerialConnector:
     @classmethod
-    def get(self, arduino_serial):
+    def receive(self, arduino_serial):
         return arduino_serial.readline()
 
     @classmethod

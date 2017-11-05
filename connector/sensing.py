@@ -12,7 +12,7 @@ def main():
         try:
             values = []
             for sensor in range(constant.SENSOR_DATA_NUMBER):
-                value = SerialConnector.get(arduino_serial)
+                value = SerialConnector.receive(arduino_serial)
                 UDPConnector.send(value, dstip, dstport, mysocket)
                 values.append(value)
             csv_data.append(values)
