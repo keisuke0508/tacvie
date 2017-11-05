@@ -21,10 +21,10 @@ def haptic_senbay_ver():
 
 def haptic_csv_ver():
     value_number = 0
-    # video = data.VideoPlayer.get_video()
-    # csv_data = data.CSVReader().read_csv()
-    video = data.VideoPlayer.get_video_test()
-    csv_data = data.CSVReader().read_csv_test()
+    video = data.VideoPlayer.get_video()
+    csv_data = data.CSVReader().read_csv()
+    # video = data.VideoPlayer.get_video_test()
+    # csv_data = data.CSVReader().read_csv_test()
     arduino_serial = SerialConnector.get_connection()
     start_wait = True
     while video.isOpened():
