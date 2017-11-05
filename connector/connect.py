@@ -90,7 +90,7 @@ class BicycleDataReceiver(SensorDataReceiver):
         string, addr = self.set_sender(mysocket)
         json_data = self.get_json_data(string)
         data = self.get_speed_data(json_data)
-        data = self.change_data_to_eight_bit(data)
+        data = self.change_speed_to_eight_bit(data)
         return data
 
     @classmethod
@@ -98,7 +98,11 @@ class BicycleDataReceiver(SensorDataReceiver):
         return json_data[constant.SPEED]
 
     @classmethod
-    def change_data_to_eight_bit(self, data):
+    def get_wind_data(self, json_data):
+        return json_data[constant.WIND]
+
+    @classmethod
+    def change_speed_to_eight_bit(self, data):
         data = data * (constant.MAX_EIGHT_BIT / constant.MAX_SPEED)
         if data >= constant.MAX_EIGHT_BIT:
             return constant.MAX_EIGHT_BIT
