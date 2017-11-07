@@ -18,8 +18,8 @@ CSV_PATH = "./../static/csv/"
 VIDEO_PATH = "./../static/video/"
 
 # file name
-CSV_FILE = "test.csv"
-CSV_TEST_FILE = "test.csv"
+CSV_FILE = "test2.csv"
+CSV_TEST_FILE = "test2.csv"
 VIDEO_FILE = "test3.mov"
 VIDEO_TEST_FILE = "test.mov"
 
