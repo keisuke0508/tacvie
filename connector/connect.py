@@ -66,8 +66,7 @@ class HapticDataReceiver(SensorDataReceiver):
     def receive_sensor_data(self, mysocket):
         string, addr = self.set_sender(mysocket)
         json_data = self.get_json_data(string)
-        data = self.get_socket_data(json_data)
-        data = self.change_data_to_angle(data)
+        data = self.change_data_to_angle(self.get_socket_data(json_data))
         return data
 
     @classmethod
@@ -89,9 +88,9 @@ class BicycleDataReceiver(SensorDataReceiver):
     def receive_sensor_data(self, mysocket):
         string, addr = self.set_sender(mysocket)
         json_data = self.get_json_data(string)
-        data = self.get_speed_data(json_data)
-        data = self.change_speed_to_eight_bit(data)
-        return data
+        speed = self.change_speed_to_eight_bit(self.get_speed_data(json_data))
+        wind = self.change_wind_to_eight_bit(self.get_wind_data(json_data))
+        return [speed, wind]
 
     @classmethod
     def get_speed_data(self, json_data):
@@ -104,6 +103,13 @@ class BicycleDataReceiver(SensorDataReceiver):
     @classmethod
     def change_speed_to_eight_bit(self, data):
         data = data * (constant.MAX_EIGHT_BIT / constant.MAX_SPEED)
+        if data >= constant.MAX_EIGHT_BIT:
+            return constant.MAX_EIGHT_BIT
+        return int(data)
+
+    @classmethod
+    def change_wind_to_eight_bit(self, data):
+        data = data * (constant.MAX_EIGHT_BIT / constant.MAX_WIND)
         if data >= constant.MAX_EIGHT_BIT:
             return constant.MAX_EIGHT_BIT
         return int(data)

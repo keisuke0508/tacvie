@@ -52,7 +52,6 @@ def bicycle_senbay_ver():
     while True:
         try:
             sensor_data = BicycleDataReceiver.receive_sensor_data(mysocket)
-            arduino_serial.write(str(sensor_data) + '/')
             for data in sensor_data:
                 arduino_serial.write(str(data) + '/')
         except KeyboardInterrupt:
