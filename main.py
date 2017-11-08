@@ -13,15 +13,15 @@ def main():
         get_raw_input()
 
 def start_func(func):
-    if func == 's':
+    if func == 's' or func == 'sensing':
         os.system('python sensing.py')
-    elif func == 'a':
+    elif func == 'a' or func == 'actuation':
         os.system('python actuation.py')
     else:
         get_raw_input()
 
 def get_raw_input():
-    print "input 's'(sensing) or 'a'(actuation)."
+    print "input 's' or 'a'(sensing or actuation)."
     func = raw_input()
     start_func(func)
 
