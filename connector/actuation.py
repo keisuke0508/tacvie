@@ -51,13 +51,16 @@ def bicycle_senbay_ver():
     arduino_serial = SerialConnector.get_connection()
     while True:
         try:
-            sensor_data = BicycleDataReceiver.receive_sensor_data(mysocket)
-            for data in sensor_data:
-                arduino_serial.write(str(data) + '/')
+            speed = BicycleDataReceiver.receive_speed_data(mysocket)
+            arduino_serial.write(str(speed) + '/')
+            print speed
         except KeyboardInterrupt:
+            arduino_serial.close()
             sys.exit()
+        except KeyError:
+            print "System fail to find data."
         except:
-            arduino_serial.write('0/')
+            pass
 
 def manage(act):
     if act == 'h' or act == 'haptic':

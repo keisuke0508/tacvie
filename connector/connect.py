@@ -93,6 +93,20 @@ class BicycleDataReceiver(SensorDataReceiver):
         return [speed, wind]
 
     @classmethod
+    def receive_speed_data(self, mysocket):
+        string, addr = self.set_sender(mysocket)
+        json_data = self.get_json_data(string)
+        speed = self.change_speed_to_eight_bit(self.get_speed_data(json_data))
+        return speed
+
+    @classmethod
+    def receive_wind_data(self, mysocket):
+        string, addr = self.set_sender(mysocket)
+        json_data = self.get_json_data(string)
+        wind = self.change_wind_to_eight_bit(self.get_wind_data(json_data))
+        return wind
+
+    @classmethod
     def get_speed_data(self, json_data):
         return json_data[constant.SPEED]
 
