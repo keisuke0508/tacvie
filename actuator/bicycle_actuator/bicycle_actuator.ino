@@ -1,6 +1,5 @@
 const int data_num = 2;
 const int vib_pin = 9;
-char data[10];
 int val = 0;
 
 void setup() {
