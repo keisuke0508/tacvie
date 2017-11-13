@@ -52,8 +52,7 @@ def bicycle_senbay_ver():
     while True:
         try:
             speed = BicycleDataReceiver.receive_speed_data(mysocket)
-            arduino_serial.write(str(speed) + '/')
-            print speed
+            arduino_serial.write(chr(speed))
         except KeyboardInterrupt:
             arduino_serial.close()
             sys.exit()

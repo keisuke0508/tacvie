@@ -19,17 +19,8 @@ void loop() {
 }
 
 void get_data() {
-  int num = 0;
-  while(true) {
-    data[num] = Serial.read();
-    if(data[num] == '/') {
-      data[num] = '\0';
-      val = atoi(data);
-      break;
-    }else {
-      num += 1;
-    }
-  }
+  int v = Serial.read();
+  val = map(v, 0, 60, 0, 255);
 }
 
 void actuate_vibration() {
