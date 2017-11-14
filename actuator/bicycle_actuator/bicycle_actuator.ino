@@ -18,8 +18,8 @@ void loop() {
 }
 
 void get_data() {
-  int v = Serial.read();
-  val = map(v, 0, 60, 0, 255);
+  val = Serial.read();
+//  val = map(v, 0, 255, 0, 255);
 }
 
 void actuate_vibration() {
