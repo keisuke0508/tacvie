@@ -1,6 +1,7 @@
 import os
 import sys
 
+
 def main():
     os.chdir('connector')
     if len(sys.argv) < 2:
@@ -12,6 +13,7 @@ def main():
     else:
         get_raw_input()
 
+
 def start_func(func):
     if func == 's' or func == 'sensing':
         os.system('python sensing.py')
@@ -19,6 +21,7 @@ def start_func(func):
         os.system('python actuation.py')
     else:
         get_raw_input()
+
 
 def get_raw_input():
     print "input 's' or 'a'(sensing or actuation)."
