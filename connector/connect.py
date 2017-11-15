@@ -3,6 +3,7 @@ import serial
 import socket
 import json
 
+
 class SerialConnector:
     @classmethod
     def receive(self, arduino_serial):
@@ -75,7 +76,10 @@ class HapticDataReceiver(SensorDataReceiver):
 
     @classmethod
     def change_data_to_angle(self, data):
-        data = (float(data) - constant.MIN_PRESSURE) * (constant.MAX_ANGLE - constant.MIN_ANGLE) / (constant.MAX_PRESSURE - constant.MIN_PRESSURE) + constant.MIN_ANGLE
+        value = float(data) - constant.MIN_PRESSURE
+        angle = constant.MAX_ANGLE - constant.MIN_ANGLE
+        pressuer = constant.MAX_PRESSURE - constant.MIN_PRESSURE
+        data = value * angle / pressuer + constant.MIN_ANGLE
         if data <= constant.MIN_PRESSURE:
             return constant.MIN_ANGLE
         if data >= constant.MAX_ANGLE:

@@ -2,8 +2,10 @@ import cv2
 import time
 import sys
 import constant
-from connect import *
+from connect import SerialConnector, SensorDataReceiver
+from connect import HapticDataReceiver, BicycleDataReceiver
 import data
+
 
 def haptic_senbay_ver():
     mysocket = SensorDataReceiver.make_mysocket()
@@ -16,8 +18,9 @@ def haptic_senbay_ver():
             print sensor_data
         except KeyboardInterrupt:
             sys.exit()
-        except:
+        except Exception:
             arduino_serial.write('0/')
+
 
 def haptic_csv_ver():
     value_number = 0
@@ -36,7 +39,7 @@ def haptic_csv_ver():
             arduino_serial.write(csv_data[value_number][sensor] + '/')
             print csv_data[value_number][sensor]
         value_number += 1
-        if start_wait == True:
+        if start_wait is True:
             time.sleep(constant.START_WAIT)
             start_wait = False
         else:
@@ -44,6 +47,7 @@ def haptic_csv_ver():
         time.sleep(0.01)
     video.release()
     cv2.destroyAllWindows()
+
 
 def bicycle_senbay_ver():
     mysocket = SensorDataReceiver.make_mysocket()
@@ -58,8 +62,9 @@ def bicycle_senbay_ver():
             sys.exit()
         except KeyError:
             print "System fail to find data."
-        except:
+        except Exception:
             pass
+
 
 def manage(act):
     if act == 'h' or act == 'haptic':
@@ -70,10 +75,12 @@ def manage(act):
     else:
         main()
 
+
 def main():
     print "input 'h' or 'b' (haptic or bicycle)."
     act = raw_input()
     manage(act)
+
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,7 @@
 import constant
-from connect import *
+from connect import SerialConnector, UDPConnector
 import data
+
 
 def main():
     arduino_serial = SerialConnector.get_connection()
@@ -16,9 +17,10 @@ def main():
                 UDPConnector.send(value, dstip, dstport, mysocket)
                 values.append(value)
             csv_data.append(values)
-        except:
+        except Exception:
             data.CSVMaker().make_csv_test(csv_data)
-            break;
+            break
+
 
 if __name__ == "__main__":
     main()

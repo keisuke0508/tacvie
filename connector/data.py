@@ -3,6 +3,7 @@ import os
 import cv2
 import constant
 
+
 class CSVMaker:
     def make_csv(self, values):
         path = self.get_csv_path()
@@ -27,7 +28,7 @@ class CSVMaker:
         filename = ''
         while True:
             filename = 'data' + str(num) + '.csv'
-            if os.path.exists(filename) == True:
+            if os.path.exists(filename) is True:
                 num = num + 1
             else:
                 break
@@ -37,7 +38,7 @@ class CSVMaker:
         try:
             for sensor_data in range(len(values)):
                 values[sensor_data] = map(int, values[sensor_data])
-        except:
+        except Exception:
             for sensor_data in range(len(values)):
                 values[sensor_data] = map(float, values[sensor_data])
 
