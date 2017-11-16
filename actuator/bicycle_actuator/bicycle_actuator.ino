@@ -1,7 +1,6 @@
 const int vib_pin = 9;
 const int fan_pin = 3;
-int vib_val = 0;
-int fan_val = 0;;
+int val = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -21,23 +20,18 @@ void loop() {
 }
 
 void get_data() {
-  vib_val = Serial.read();
+  val = Serial.read();
 }
 
 void actuate_vibration() {
-  analogWrite(vib_pin, vib_val);
+  analogWrite(vib_pin, val);
   Serial.print("speed: ");
-  Serial.println(vib_val);
+  Serial.println(val);
 }
 
 void actuate_fan() {
-  if(vib_val == 0) {
-    fan_val = 0;
-  }else {
-    fan_val = 255;
-  }
-  analogWrite(fan_pin, fan_val);
+  analogWrite(fan_pin, val);
   Serial.print("wind: ");
-  Serial.println(fan_val);
+  Serial.println(val);
 }
 
