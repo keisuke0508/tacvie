@@ -1,10 +1,12 @@
-const int data_num = 2;
 const int vib_pin = 9;
-int val = 0;
+const int fan_pin = 3;
+int vib_val = 0;
+int fan_val = 0;;
 
 void setup() {
   // put your setup code here, to run once:
   pinMode(vib_pin, OUTPUT);
+  pinMode(fan_pin, OUTPUT);
   Serial.begin(9600);
   Serial.flush();
 }
@@ -15,15 +17,27 @@ void loop() {
     get_data();
   }
   actuate_vibration();
+  actuate_fan();
 }
 
 void get_data() {
-  val = Serial.read();
-//  val = map(v, 0, 255, 0, 255);
+  vib_val = Serial.read();
 }
 
 void actuate_vibration() {
-  analogWrite(vib_pin, val);
+  analogWrite(vib_pin, vib_val);
   Serial.print("speed: ");
-  Serial.println(val);
+  Serial.println(vib_val);
 }
+
+void actuate_fan() {
+  if(vib_val == 0) {
+    fan_val = 0;
+  }else {
+    fan_val = 255;
+  }
+  analogWrite(fan_pin, fan_val);
+  Serial.print("wind: ");
+  Serial.println(fan_val);
+}
+
