@@ -34,8 +34,8 @@ char get_data() {
 }
 
 void actuate_servo() {
-  int val = atoi(data);
-//  Serial.println(data);
+  int val = atoi(data) * 2;
+  Serial.println(data);
   myservo.write(val);
 }
 
