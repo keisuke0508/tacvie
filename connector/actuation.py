@@ -15,11 +15,12 @@ def haptic_senbay_ver():
         try:
             sensor_data = HapticDataReceiver.receive_sensor_data(mysocket)
             arduino_serial.write(str(sensor_data) + '/')
-            print sensor_data
+            # print sensor_data
         except KeyboardInterrupt:
+            arduino_serial.close()
             sys.exit()
         except Exception:
-            arduino_serial.write('0/')
+            pass
 
 
 def haptic_csv_ver():
