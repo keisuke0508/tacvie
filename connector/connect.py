@@ -148,4 +148,5 @@ class BicycleDataReceiver(SensorDataReceiver):
 
     @classmethod
     def change_acc_to_eight_bit(cls, data):
-        return int(data)
+        acc = map(float, data)
+        return max(acc) - min(acc)
