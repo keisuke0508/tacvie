@@ -111,12 +111,26 @@ class BicycleDataReceiver(SensorDataReceiver):
         return wind
 
     @classmethod
+    def receive_acc_data(cls, mysocket):
+        string, addr = cls.set_sender(mysocket)
+        json_data = cls.get_json_data(string)
+        acc = cls.change_acc_to_eight_bit(cls.get_acc_data(json_data))
+        return acc
+
+    @classmethod
     def get_speed_data(cls, json_data):
         return json_data[constant.SPEED]
 
     @classmethod
     def get_wind_data(cls, json_data):
         return json_data[constant.WIND]
+
+    @classmethod
+    def get_acc_data(cls, json_data):
+        acc_x = json_data[constant.ACCX]
+        acc_y = json_data[constant.ACCY]
+        acc_z = json_data[constant.ACCZ]
+        return [acc_x, acc_y, acc_z]
 
     @classmethod
     def change_speed_to_eight_bit(cls, data):
@@ -130,4 +144,8 @@ class BicycleDataReceiver(SensorDataReceiver):
         data = data * (constant.MAX_EIGHT_BIT / constant.MAX_WIND)
         if data >= constant.MAX_EIGHT_BIT:
             return constant.MAX_EIGHT_BIT
+        return int(data)
+
+    @classmethod
+    def change_acc_to_eight_bit(cls, data):
         return int(data)

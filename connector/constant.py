@@ -31,6 +31,9 @@ STRING_CODE = 'utf-8'
 SOCKET = 'SOCKET'
 SPEED = 'SPEE'
 WIND = 'WIND'
+ACCX = 'ACCX'
+ACCY = 'ACCY'
+ACCZ = 'ACCZ'
 
 # max and min data
 MAX_ANGLE = 180
