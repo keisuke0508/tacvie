@@ -47,6 +47,14 @@ class CSVMaker:
             csv_writer = csv.writer(csv_file, lineterminator='\n')
             csv_writer.writerows(values)
 
+    def write_bicycle_acc(self, values):
+        path = self.get_csv_path()
+        self.change_dir_to_csv(path)
+        filename = constant.BICYCLE_ACC_FILE
+        with open(filename, 'w') as f:
+            writer = csv.writer(f, lineterminator='\n')
+            writer.writerow(values)
+
 
 class CSVReader:
     def read_csv(self):
@@ -80,6 +88,17 @@ class CSVReader:
     def change_number_to_string(self, csv_data):
         for sensor_data in range(len(csv_data)):
             csv_data[sensor_data] = map(str, csv_data[sensor_data])
+
+    def read_bicycle_acc(self):
+        path = self.get_csv_path()
+        self.change_dir_to_csv(path)
+        filename = constant.BICYCLE_ACC_FILE
+        data = []
+        with open(filename, 'r') as f:
+            reader = csv.reader(f)
+            for val in reader:
+                data.append(val)
+        return data
 
 
 class VideoPlayer:

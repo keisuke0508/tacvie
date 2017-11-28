@@ -114,6 +114,9 @@ class BicycleDataReceiver(SensorDataReceiver):
     def receive_acc_data(cls, mysocket):
         string, addr = cls.set_sender(mysocket)
         json_data = cls.get_json_data(string)
+        speed = cls.change_speed_to_eight_bit(cls.get_speed_data(json_data))
+        if speed == 0:
+            return 0
         acc = cls.change_acc_to_eight_bit(cls.get_acc_data(json_data))
         return acc
 
@@ -150,3 +153,27 @@ class BicycleDataReceiver(SensorDataReceiver):
     def change_acc_to_eight_bit(cls, data):
         acc = map(float, data)
         return max(acc) - min(acc)
+
+    def read_acc_data(self):
+        from data import CSVReader
+        values = CSVReader().read_bicycle_acc()
+        return map(float, values[0])
+
+    def get_acc_information(self, data):
+        max_difference = self.get_max_acc_difference(data)
+        min_difference = self.get_min_acc_difference(data)
+        average = self.get_average_acc_difference(data)
+        return dict(
+            max_difference=max_difference,
+            min_difference=min_difference,
+            average=average
+        )
+
+    def get_max_acc_difference(self, data):
+        return max(data)
+
+    def get_min_acc_difference(self, data):
+        return min(data)
+
+    def get_average_acc_difference(self, data):
+        return sum(data) / len(data)

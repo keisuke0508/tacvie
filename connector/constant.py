@@ -20,6 +20,7 @@ VIDEO_PATH = "./../static/video/"
 # file name
 CSV_FILE = "test2.csv"
 CSV_TEST_FILE = "test2.csv"
+BICYCLE_ACC_FILE = "bicycle_acc.csv"
 VIDEO_FILE = "test3.mov"
 VIDEO_TEST_FILE = "test.mov"
 
