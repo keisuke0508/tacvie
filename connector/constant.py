@@ -45,6 +45,5 @@ MAX_EIGHT_BIT = 255
 MAX_SPEED = 8
 MAX_WIND = 8
 
-
 # video frame
 FRAME_TITLE = "FRAME"

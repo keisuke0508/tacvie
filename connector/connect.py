@@ -114,11 +114,14 @@ class BicycleDataReceiver(SensorDataReceiver):
     def receive_acc_data(cls, mysocket):
         string, addr = cls.set_sender(mysocket)
         json_data = cls.get_json_data(string)
-        speed = cls.change_speed_to_eight_bit(cls.get_speed_data(json_data))
-        if speed == 0:
-            return 0
-        acc = cls.change_acc_to_eight_bit(cls.get_acc_data(json_data))
+        acc = cls.get_acc_data(json_data)
         return acc
+
+    @classmethod
+    def receive_acc_actuation_value(cls, pre_acc, acc):
+        difference = abs(pre_acc - acc)
+        val = cls.change_acc_to_eight_bit(difference)
+        return val
 
     @classmethod
     def get_speed_data(cls, json_data):
@@ -130,10 +133,11 @@ class BicycleDataReceiver(SensorDataReceiver):
 
     @classmethod
     def get_acc_data(cls, json_data):
-        acc_x = json_data[constant.ACCX]
-        acc_y = json_data[constant.ACCY]
-        acc_z = json_data[constant.ACCZ]
-        return [acc_x, acc_y, acc_z]
+        acc_x = abs(json_data[constant.ACCX])
+        acc_y = abs(json_data[constant.ACCY])
+        acc_z = abs(json_data[constant.ACCZ])
+        acc = acc_x + acc_y + acc_z
+        return acc
 
     @classmethod
     def change_speed_to_eight_bit(cls, data):
@@ -151,8 +155,10 @@ class BicycleDataReceiver(SensorDataReceiver):
 
     @classmethod
     def change_acc_to_eight_bit(cls, data):
-        acc = map(float, data)
-        return max(acc) - min(acc)
+        val = data * 100
+        if val > constant.MAX_EIGHT_BIT:
+            return constant.MAX_EIGHT_BIT
+        return int(val)
 
     def read_acc_data(self):
         from data import CSVReader

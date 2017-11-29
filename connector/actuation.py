@@ -54,12 +54,17 @@ def bicycle_senbay_ver():
     mysocket = SensorDataReceiver.make_mysocket()
     SensorDataReceiver.bind_mysocket(mysocket)
     arduino_serial = SerialConnector.get_connection()
+    pre_acc = 0
     while True:
         try:
-            speed = BicycleDataReceiver.receive_speed_data(mysocket)
-            arduino_serial.write(chr(speed))
+            # speed = BicycleDataReceiver.receive_speed_data(mysocket)
+            # arduino_serial.write(chr(speed))
+            acc = BicycleDataReceiver.receive_acc_data(mysocket)
+            val = BicycleDataReceiver.receive_acc_actuation_value(pre_acc, acc)
+            arduino_serial.write(chr(val))
+            pre_acc = acc
         except KeyboardInterrupt:
-            arduino_serial.close()
+            # arduino_serial.close()
             sys.exit()
         except KeyError:
             print "System fail to find data."
