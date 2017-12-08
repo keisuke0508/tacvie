@@ -1,3 +1,8 @@
+# plug & play
+SYSTEM_NAME = "Touchable Video"
+MOVIE_LIST = ["haptic.mov", "bicycle.mov"]
+MAIN_URL = "index.html"
+
 # arduino serial
 DEVICE_NAME = "/dev/cu.usbmodem1411"
 BAUD_RATE = 9600

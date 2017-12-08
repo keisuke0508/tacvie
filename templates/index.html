@@ -1,1 +1,29 @@
-<h1>Touchable Video</h1>
+<h1>{{ title }}</h1>
+
+<form action="/post" method="post">
+     <p>
+          movie:
+          <select name="movie">
+               {% for movie in movie_list %}
+                    {% if movie == selected_movie %}
+                         <option selected>{{ movie }}</option>
+                    {% else %}
+                         <option>{{ movie }}</option>
+                    {% endif %}
+               {% endfor %}
+          </select>
+     </p>
+
+     <p>
+          <input type="submit" name="start" value="start">
+     </p>
+</form>
+
+<form action="/post" method="post">
+     <p>
+          <input type="submit" name="end" value="end">
+     </p>
+</form>
+
+
+<iframe width="672" height="378" src={{ movie_url }} frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
