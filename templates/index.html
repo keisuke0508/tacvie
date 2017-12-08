@@ -15,15 +15,41 @@
      </p>
 
      <p>
-          <input type="submit" name="start" value="start">
+          <input type="submit" name="start" value="start" class="start_btn">
      </p>
 </form>
 
 <form action="/post" method="post">
      <p>
-          <input type="submit" name="end" value="end">
+          <input type="submit" name="end" value="end" class="end_btn">
      </p>
 </form>
 
+<div style="position:relative;top:-150px;left:300px;">
+     {% if selected_movie %}
+          <iframe width="1008" height="567" src={{ movie_url }} frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+     {% endif %}
+</div>
 
-<iframe width="672" height="378" src={{ movie_url }} frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<style type="text/css" media="screen">
+.start_btn{
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #87befd;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+  }
+
+  .end_btn{
+      display: inline-block;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      background: #ffba78;/*ボタン色*/
+      color: #FFF;
+      border-bottom: solid 4px #627295;
+      border-radius: 3px;
+}
+
+</style>

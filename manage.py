@@ -11,7 +11,7 @@ def get():
     title = get_title()
     movie_list = get_movie_list()
     selected_movie = None
-    movie_url = constant.INITIAL_URL
+    movie_url = url.INITIAL_URL
     return f.render_template(constant.MAIN_URL,
                              title=title,
                              movie_list=movie_list,
@@ -29,7 +29,7 @@ def post():
         movie_url = get_movie_url(selected_movie)
     elif "end" in f.request.form:
         selected_movie = None
-        movie_url = constant.INITIAL_URL
+        movie_url = url.INITIAL_URL
     return f.render_template(constant.MAIN_URL,
                              title=title,
                              movie_list=movie_list,
