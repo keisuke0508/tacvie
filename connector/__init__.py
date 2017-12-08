@@ -8,7 +8,7 @@ import data
 
 
 class SensingMain:
-    def haptic():
+    def haptic(self):
         import constant
         from connect import SerialConnector, UDPConnector
         import data
@@ -29,7 +29,7 @@ class SensingMain:
                 data.CSVMaker().make_csv_test(csv_data)
                 break
 
-    def bicycle_acc():
+    def bicycle_acc(self):
         from connect import SensorDataReceiver, BicycleDataReceiver
         from data import CSVMaker
         import sys
@@ -48,7 +48,7 @@ class SensingMain:
 
 
 class ActuationMain:
-    def haptic_senbay_ver():
+    def haptic_senbay_ver(self):
         mysocket = SensorDataReceiver.make_mysocket()
         SensorDataReceiver.bind_mysocket(mysocket)
         arduino_serial = SerialConnector.get_connection()
@@ -63,7 +63,7 @@ class ActuationMain:
             except Exception:
                 pass
 
-    def haptic_csv_ver():
+    def haptic_csv_ver(self):
         value_number = 0
         video = data.VideoPlayer.get_video()
         csv_data = data.CSVReader().read_csv()
@@ -87,7 +87,7 @@ class ActuationMain:
         video.release()
         cv2.destroyAllWindows()
 
-    def haptic_csv_ver_test():
+    def haptic_csv_ver_test(self):
         value_number = 0
         video = data.VideoPlayer.get_video_test()
         csv_data = data.CSVReader().read_csv_test()
@@ -111,7 +111,7 @@ class ActuationMain:
         video.release()
         cv2.destroyAllWindows()
 
-    def bicycle_senbay_speed_ver():
+    def bicycle_senbay_speed_ver(self):
         mysocket = SensorDataReceiver.make_mysocket()
         SensorDataReceiver.bind_mysocket(mysocket)
         arduino_serial = SerialConnector.get_connection()
@@ -127,7 +127,7 @@ class ActuationMain:
             except Exception:
                 pass
 
-    def bicycle_senbay_acc_ver():
+    def bicycle_senbay_acc_ver(self):
         mysocket = SensorDataReceiver.make_mysocket()
         SensorDataReceiver.bind_mysocket(mysocket)
         arduino_serial = SerialConnector.get_connection()
