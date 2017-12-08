@@ -146,3 +146,7 @@ class ActuationMain:
                 print "System fail to find data."
             except Exception:
                 pass
+
+
+class TouchableVideoMain(SensingMain, ActuationMain):
+    pass
