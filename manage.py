@@ -65,8 +65,8 @@ def actuation(movie):
         elif movie == 'bicycle.mov':
             ActuationMain().bicycle_senbay_speed_ver()
         return
-    except Exception as e:
-        return e
+    except Exception as err_log:
+        return err_log
 
 
 if __name__ == '__main__':
