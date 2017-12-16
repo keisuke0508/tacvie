@@ -1,5 +1,5 @@
 # plug & play
-SYSTEM_NAME = "Touchable Video"
+SYSTEM_NAME = "Tacvie"
 MOVIE_LIST = ["haptic.mov", "bicycle.mov"]
 MAIN_URL = "index.html"
 
