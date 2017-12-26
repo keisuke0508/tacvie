@@ -83,7 +83,7 @@ class TacvieAppBase:
     def update_log(self, log):
         self.logs.append(log)
         if(len(self.logs) > constant.LOG_LIMIT):
-            self.logs.pop(0)
+            self.logs.pop(constant.LOG_POP_NUM)
 
     def get_current_time(self):
         return datetime.now().strftime("%Y/%m/%d %H:%M:%S")
