@@ -148,5 +148,5 @@ class ActuationMain:
                 pass
 
 
-class TouchableVideoMain(SensingMain, ActuationMain):
+class TacvieMain(SensingMain, ActuationMain):
     pass

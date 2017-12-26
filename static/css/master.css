@@ -1,0 +1,19 @@
+.start_btn{
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #87befd;
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+  }
+
+  .end_btn{
+      display: inline-block;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      background: #ffba78;
+      color: #FFF;
+      border-bottom: solid 4px #627295;
+      border-radius: 3px;
+}
