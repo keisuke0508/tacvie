@@ -25,34 +25,22 @@ class TacvieAppBase:
 
     def set_movie_list(self):
         self.movie = tk.StringVar()
-        movie_list = ttk.Combobox(self.root, state='readonly',
+        movie_list = ttk.Combobox(self.root, state=constant.STATE,
                                   textvariable=self.movie)
         movie_list['values'] = constant.MOVIE_LIST
-        movie_list.current(0)
-        movie_list.bind('<<ComboboxSelected>>', self.select_movie)
-        movie_list.place(x=30, y=200)
+        movie_list.current(constant.OPENING_MOVIE_SETTING)
+        movie_list.place(x=constant.MOVIE_LIST_X, y=constant.MOVIE_LIST_Y)
 
     def set_button(self):
-        start_btn = tk.Button(text='start')
-        end_btn = tk.Button(text='end')
-        start_btn.bind('<Button-1>', self.start_btn_func)
-        end_btn.bind('<Button-1>', self.end_btn_func)
-        start_btn.place(x=30, y=250)
-        end_btn.place(x=30, y=300)
-
-    def select_movie(self, e):
-        movie_title = self.movie.get()
-        if movie_title == 'Not Select':
-            pass
-        elif movie_title == 'haptic.mov':
-            pass
-        elif movie_title == 'bicycle.mov':
-            pass
-        else:
-            pass
+        start_btn = tk.Button(text=constant.START_BTN_TEXT)
+        end_btn = tk.Button(text=constant.END_BTN_TEXT)
+        start_btn.bind(constant.BTN_EVENT, self.start_btn_func)
+        end_btn.bind(constant.BTN_EVENT, self.end_btn_func)
+        start_btn.place(x=constant.BTN_X, y=constant.START_BTN_Y)
+        end_btn.place(x=constant.BTN_X, y=constant.END_BTN_Y)
 
     def start_btn_func(self, e):
-        pass
+        print self.movie.get()
 
     def end_btn_func(self, e):
         pass
