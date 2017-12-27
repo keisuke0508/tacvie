@@ -52,7 +52,12 @@ class TacvieAppBase:
         log_area.place(x=constant.LOG_AREA_X, y=constant.LOG_AREA_Y)
 
     def set_menu_bar(self):
-        pass
+        menu_bar = tk.Menu(self.root)
+        menu_tacvie = tk.Menu(menu_bar)
+        self.root.configure(menu=menu_bar)
+        menu_bar.add_cascade(label='Tacvie', menu=menu_tacvie)
+        menu_tacvie.add_command(label='help', command=self.display_help)
+        menu_tacvie.add_command(label='exit', command=self.exit_app)
 
     def start_btn_func(self, e):
         movie = self.movie.get()
@@ -92,6 +97,13 @@ class TacvieAppBase:
 
     def get_current_time(self):
         return datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+
+    def display_help(self):
+        log = 'help have not written.'
+        self.write_log(log)
+
+    def exit_app(self):
+        sys.exit()
 
 
 class TacvieApp(TacvieAppBase):
