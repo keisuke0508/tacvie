@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+import sys
 from datetime import datetime
 import constant
 from connector import TacvieMain
@@ -18,21 +19,22 @@ class TacvieAppBase:
         self.set_movie_list()
         self.set_button()
         self.set_log_area()
+        self.set_menu_bar()
 
     def set_title(self):
         title = constant.APP_TITLE
         font = constant.FONT
         size = constant.TITLE_FONT_SIZE
         title_label = tk.Label(text=title, font=(font, size))
-        title_label.pack()
+        title_label.place(x=constant.TITLE_X, y=constant.TITLE_Y)
 
     def set_movie_list(self):
         self.movie = tk.StringVar()
-        movie_list = ttk.Combobox(self.root, state=constant.STATE,
-                                  textvariable=self.movie)
-        movie_list['values'] = constant.MOVIE_LIST
-        movie_list.current(constant.OPENING_MOVIE_SETTING)
-        movie_list.place(x=constant.MOVIE_LIST_X, y=constant.MOVIE_LIST_Y)
+        self.movie_list = ttk.Combobox(self.root, state=constant.STATE,
+                                       textvariable=self.movie)
+        self.movie_list['values'] = constant.MOVIE_LIST
+        self.movie_list.current(constant.OPENING_MOVIE_SETTING)
+        self.movie_list.place(x=constant.MOVIE_LIST_X, y=constant.MOVIE_LIST_Y)
 
     def set_button(self):
         start_btn = tk.Button(text=constant.START_BTN_TEXT)
@@ -49,6 +51,9 @@ class TacvieAppBase:
         log_area = tk.Label(text=None, font=(font, size))
         log_area.place(x=constant.LOG_AREA_X, y=constant.LOG_AREA_Y)
 
+    def set_menu_bar(self):
+        pass
+
     def start_btn_func(self, e):
         movie = self.movie.get()
         if movie == constant.NOT_SELECT:
@@ -63,9 +68,9 @@ class TacvieAppBase:
             self.write_log(err_log)
 
     def end_btn_func(self, e):
-        pass
+        sys.exit()
 
-    def write_log(self, log):
+    def write_log(self, log=None):
         log = self.get_log(log)
         self.update_log(log)
         font = constant.FONT

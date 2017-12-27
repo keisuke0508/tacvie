@@ -1,6 +1,8 @@
 # title
 APP_TITLE = 'Tacvie App'
 TITLE_FONT_SIZE = 50
+TITLE_X = 15
+TITLE_Y = 30
 
 # font
 FONT = 'Helvetica'
