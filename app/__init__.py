@@ -3,10 +3,13 @@ import tkinter.ttk as ttk
 import sys
 from datetime import datetime
 import constant
-from connector import TacvieMain
+from process import AppHapticProcesser, AppBicycleProcesser
 
 
 class TacvieAppBase:
+    def __init__(self):
+        self.is_operated = False
+
     def make_app_base(self):
         self.root = tk.Tk()
         self.root.geometry(constant.WINDOW_SIZE)
@@ -65,15 +68,31 @@ class TacvieAppBase:
             err_log = constant.LOG_NOT_SELECTED
             self.write_log(err_log)
         elif movie == constant.HAPTIC_MOVIE:
-            TacvieMain().haptic_senbay_ver()
+            try:
+                self.is_operated = True
+                processer = AppHapticProcesser()
+            except Exception:
+                err_log = constant.LOG_DISCONNECTED
+                self.write_log(err_log)
+            while self.is_operated:
+                processer.process()
+            processer.close()
         elif movie == constant.BICYCLE_MOVIE:
-            TacvieMain().bicycle_senbay_speed_ver()
+            try:
+                self.is_operated = True
+                processer = AppBicycleProcesser()
+            except Exception:
+                err_log = constant.LOG_DISCONNECTED
+                self.write_log(err_log)
+            while self.is_operated:
+                processer.process()
+            processer.close()
         else:
             err_log = constant.LOG_INVALID
             self.write_log(err_log)
 
     def end_btn_func(self, e):
-        sys.exit()
+        self.b = False
 
     def write_log(self, log=None):
         log = self.get_log(log)

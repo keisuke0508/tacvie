@@ -35,5 +35,6 @@ LOG_AREA_X = 50
 LOG_AREA_Y = 250
 LOG_NOT_SELECTED = 'movie is not selected.'
 LOG_INVALID = 'invalid'
+LOG_DISCONNECTED = 'device is disconnected.'
 LOG_LIMIT = 5
 LOG_POP_NUM = 0
