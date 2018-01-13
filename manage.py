@@ -29,7 +29,7 @@ def post():
     if "start" in f.request.form:
         selected_movie = f.request.form['movie']
         movie_url = get_movie_url(selected_movie)
-        err_log = actuation(selected_movie)
+        # err_log = actuation(selected_movie)
     elif "end" in f.request.form:
         selected_movie = None
         movie_url = url.INITIAL_URL

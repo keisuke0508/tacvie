@@ -1,4 +1,3 @@
-const int data_num = 2;
 const int vib_pin = 9;
 int val = 0;
 

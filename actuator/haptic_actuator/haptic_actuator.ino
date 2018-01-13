@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 const int pin = 9;
-int val = 0;
+char data[10];
 Servo myservo;
 
 void setup() {
@@ -14,18 +14,28 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(Serial.available() > 0) {
-    get_data();
-  }
+  get_data();
   actuate_servo();
 }
 
-void get_data() {
-  val = Serial.read();
+char get_data() {
+  int num = 0;
+  while(true) {
+    if(Serial.available() > 0) {
+      data[num] = Serial.read();
+      if(data[num] == '/') {
+        data[num] = '\0';
+        break;
+      }else {
+        num += 1;
+      }
+    }
+  }
 }
 
 void actuate_servo() {
-  Serial.println(val);
+  int val = atoi(data);
+//  Serial.println(data);
   myservo.write(val);
 }
 
