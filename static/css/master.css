@@ -1,8 +1,19 @@
 .select_movie {
-    background: lightgreen;
-    color: white;
+    background: white;
+    color: black;
     width: 150px;
     font-size: 120%;
+}
+
+.select_btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background: lightgreen;
+    color: white;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+    font-size: 80%;
+    font-weight: bold;
 }
 
 .start_btn{
