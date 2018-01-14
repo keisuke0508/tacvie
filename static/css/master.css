@@ -1,19 +1,28 @@
+.select_movie {
+    background: lightgreen;
+    color: white;
+    width: 150px;
+    font-size: 120%;
+}
+
 .start_btn{
     display: inline-block;
     padding: 0.5em 1em;
-    text-decoration: none;
-    background: #87befd;
-    color: #FFF;
+    background: blue;
+    color: white;
     border-bottom: solid 4px #627295;
     border-radius: 3px;
+    width: 120px;
+    font-size: 120%;
   }
 
   .end_btn{
       display: inline-block;
       padding: 0.5em 1em;
-      text-decoration: none;
-      background: #ffba78;
-      color: #FFF;
+      background: orange;
+      color: white;
       border-bottom: solid 4px #627295;
       border-radius: 3px;
+      width: 120px;
+      font-size: 120%;
 }

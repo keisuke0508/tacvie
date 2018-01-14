@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="static/css/master.css">
+
 <h1>{{ title }}</h1>
 
 <div style="position:relative;left:300px;top:-50;">
@@ -8,7 +10,7 @@
      <form action="/post" method="post">
           <p>
                movie:
-               <select name="movie">
+               <select name="movie" class="select_movie">
                     {% for movie in movie_list %}
                          {% if movie == selected_movie %}
                               <option selected>{{ movie }}</option>
