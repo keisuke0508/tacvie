@@ -25,9 +25,13 @@ def get():
 def post():
     title = get_title()
     movie_list = get_movie_list()
-    err_log = None
     selected_movie = f.request.form['movie']
-    movie_url = get_movie_url(selected_movie)
+    movie_url = None
+    err_log = None
+    try:
+        movie_url = get_movie_url(selected_movie)
+    except Exception as e:
+        err_log = e
     return f.render_template(constant.MAIN_URL,
                              title=title,
                              movie_list=movie_list,
