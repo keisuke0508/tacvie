@@ -4,19 +4,25 @@ import sys
 import constant
 from connect import SerialConnector, SensorDataReceiver
 from connect import HapticDataReceiver, BicycleDataReceiver
+from debug import Timer, SensorDataPrinter
 import data
-
 
 def haptic_senbay_ver():
     mysocket = SensorDataReceiver.make_mysocket()
     SensorDataReceiver.bind_mysocket(mysocket)
     arduino_serial = SerialConnector.get_connection()
+    time_list = []
     while True:
         try:
+            time_a = Timer.get_unix_time()
             sensor_data = HapticDataReceiver.receive_sensor_data(mysocket)
             arduino_serial.write(str(sensor_data) + '/')
-            # print sensor_data
+            time_b = Timer.get_unix_time()
+            time = Timer.get_elapsed_time(time_a, time_b, printer=False)
+            if time < 1.0:
+                time_list.append(time)
         except KeyboardInterrupt:
+            Timer.calculate_time_data(time_list)
             arduino_serial.close()
             sys.exit()
         except Exception:
@@ -67,12 +73,30 @@ def bicycle_senbay_ver():
             pass
 
 
+def bicycle_senbay_ver_acc_speed():
+    mysocket = SensorDataReceiver.make_mysocket()
+    SensorDataReceiver.bind_mysocket(mysocket)
+    arduino_serial = SerialConnector.get_connection()
+    while True:
+        try:
+            acc = BicycleDataReceiver.receive_acc_data_with_speed(mysocket)
+            arduino_serial.write(chr(acc))
+        except KeyboardInterrupt:
+            arduino_serial.close()
+            sys.exit()
+        except KeyError:
+            print "System fail to data."
+        except Exception:
+            pass
+
+
 def manage(act):
     if act == 'h' or act == 'haptic':
         haptic_senbay_ver()
         # haptic_csv_ver()
     elif act == 'b' or act == 'bicycle':
-        bicycle_senbay_ver()
+        # bicycle_senbay_ver()
+        bicycle_senbay_ver_acc_speed()
     else:
         main()
 

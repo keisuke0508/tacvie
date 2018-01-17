@@ -17,6 +17,10 @@ class CSVMaker:
         self.change_values_to_number(values)
         self.write_csv(filename, values)
 
+    def make_debug_csv(self, values):
+        filename = constant.DEBUG_CSV_FILE
+        self.write_csv(filename, values)
+
     def get_csv_path(self):
         return constant.CSV_PATH
 

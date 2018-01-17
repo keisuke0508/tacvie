@@ -2,6 +2,7 @@ import constant
 import serial
 import socket
 import json
+import math
 
 
 class SerialConnector:
@@ -115,7 +116,17 @@ class BicycleDataReceiver(SensorDataReceiver):
         string, addr = cls.set_sender(mysocket)
         json_data = cls.get_json_data(string)
         acc = cls.get_acc_data(json_data)
+        cls.change_acc_to_eight_bit(acc)
         return acc
+
+    @classmethod
+    def receive_acc_data_with_speed(cls, mysocket):
+        string, addr = cls.set_sender(mysocket)
+        json_data = cls.get_json_data(string)
+        acc = cls.get_acc_data(json_data)
+        speed = cls.get_speed_data(json_data)
+        val = cls.change_acc_to_eight_bit_with_speed(acc, speed)
+        return val
 
     @classmethod
     def receive_acc_actuation_value(cls, pre_acc, acc):
@@ -136,7 +147,7 @@ class BicycleDataReceiver(SensorDataReceiver):
         acc_x = abs(json_data[constant.ACCX])
         acc_y = abs(json_data[constant.ACCY])
         acc_z = abs(json_data[constant.ACCZ])
-        acc = acc_x + acc_y + acc_z
+        acc = math.sqrt(pow(acc_x, 2) + pow(acc_y, 2) + pow(acc_z, 2));
         return acc
 
     @classmethod
@@ -155,10 +166,18 @@ class BicycleDataReceiver(SensorDataReceiver):
 
     @classmethod
     def change_acc_to_eight_bit(cls, data):
-        val = data * 100
+        val = data * (constant.MAX_EIGHT_BIT / constant.MAX_ACC)
         if val > constant.MAX_EIGHT_BIT:
             return constant.MAX_EIGHT_BIT
         return int(val)
+
+    @classmethod
+    def change_acc_to_eight_bit_with_speed(cls, acc, speed):
+        _acc = cls.change_acc_to_eight_bit(acc)
+        _speed = cls.change_speed_to_eight_bit(speed)
+        if _speed < 1:
+            return _speed
+        return _acc
 
     def read_acc_data(self):
         from data import CSVReader

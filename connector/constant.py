@@ -19,12 +19,13 @@ BUFFER_SIZE = 4096
 SENSOR_DATA_NUMBER = 1
 
 # path
-CSV_PATH = "./../static/csv/"
-VIDEO_PATH = "./../static/video/"
+CSV_PATH = "./../data/csv/"
+VIDEO_PATH = "./../data/video/"
 
 # file name
 CSV_FILE = "test2.csv"
 CSV_TEST_FILE = "test2.csv"
+DEBUG_CSV_FILE = "debug.csv"
 BICYCLE_ACC_FILE = "bicycle_acc.csv"
 VIDEO_FILE = "test3.mov"
 VIDEO_TEST_FILE = "test.mov"
@@ -49,6 +50,7 @@ MIN_PRESSURE = 48.13
 MAX_EIGHT_BIT = 255
 MAX_SPEED = 8
 MAX_WIND = 8
+MAX_ACC = 3.5
 
 # video frame
 FRAME_TITLE = "FRAME"
