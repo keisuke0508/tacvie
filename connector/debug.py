@@ -21,6 +21,12 @@ class Timer:
 
     @classmethod
     def calculate_time_data(cls, time_list):
+        """
+        calculate max, min, length, sum, average of unix time data from unix time data list
+        :param time_list: list of unix time
+        :return: max, min, length, sum, average in unix time list
+        :rtype: dict of (String, float)
+        """
         max_val = max(time_list)
         min_val = min(time_list)
         length = len(time_list)
@@ -39,6 +45,12 @@ class Timer:
 class SensorDataPrinter:
     @classmethod
     def calculate_acc_data(cls, values):
+        """
+        calculate max, min, length, sum, average of sensor data from data list
+        :param values: list of sensor data
+        :return: max, min, length, sum, average of sensor data
+        :rtype dict of (String , float)
+        """
         max_val = max(values)
         min_val = min(values)
         length = len(values)

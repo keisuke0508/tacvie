@@ -166,7 +166,7 @@ class BicycleDataReceiver(SensorDataReceiver):
 
     @classmethod
     def change_acc_to_eight_bit(cls, data):
-        val = data * (constant.MAX_EIGHT_BIT / constant.MAX_ACC)
+        val = data * (constant.MAX_EIGHT_BIT / constant.MAX_ACC) * 2
         if val > constant.MAX_EIGHT_BIT:
             return constant.MAX_EIGHT_BIT
         return int(val)
@@ -175,7 +175,7 @@ class BicycleDataReceiver(SensorDataReceiver):
     def change_acc_to_eight_bit_with_speed(cls, acc, speed):
         _acc = cls.change_acc_to_eight_bit(acc)
         _speed = cls.change_speed_to_eight_bit(speed)
-        if _speed < 1:
+        if speed < 1:
             return _speed
         return _acc
 

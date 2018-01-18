@@ -81,6 +81,7 @@ def bicycle_senbay_ver_acc_speed():
         try:
             acc = BicycleDataReceiver.receive_acc_data_with_speed(mysocket)
             arduino_serial.write(chr(acc))
+            print acc
         except KeyboardInterrupt:
             arduino_serial.close()
             sys.exit()
