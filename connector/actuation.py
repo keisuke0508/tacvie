@@ -11,18 +11,11 @@ def haptic_senbay_ver():
     mysocket = SensorDataReceiver.make_mysocket()
     SensorDataReceiver.bind_mysocket(mysocket)
     arduino_serial = SerialConnector.get_connection()
-    time_list = []
     while True:
         try:
-            time_a = Timer.get_unix_time()
             sensor_data = HapticDataReceiver.receive_sensor_data(mysocket)
             arduino_serial.write(str(sensor_data) + '/')
-            time_b = Timer.get_unix_time()
-            time = Timer.get_elapsed_time(time_a, time_b, printer=False)
-            if time < 1.0:
-                time_list.append(time)
         except KeyboardInterrupt:
-            Timer.calculate_time_data(time_list)
             arduino_serial.close()
             sys.exit()
         except Exception:
@@ -81,7 +74,6 @@ def bicycle_senbay_ver_acc_speed():
         try:
             acc = BicycleDataReceiver.receive_acc_data_with_speed(mysocket)
             arduino_serial.write(chr(acc))
-            print acc
         except KeyboardInterrupt:
             arduino_serial.close()
             sys.exit()

@@ -1,7 +1,10 @@
+from debug import Timer
+
 def haptic():
     import constant
     from connect import SerialConnector, UDPConnector
     import data
+    import sys
     arduino_serial = SerialConnector.get_connection()
     dstip = UDPConnector.get_dstip()
     dstport = UDPConnector.get_dstport()
@@ -15,9 +18,11 @@ def haptic():
                 UDPConnector.send(value, dstip, dstport, mysocket)
                 values.append(value)
             csv_data.append(values)
-        except Exception:
+        except KeyboardInterrupt:
             data.CSVMaker().make_csv_test(csv_data)
-            break
+            sys.exit()
+        except Exception:
+            print "fail to get data"
 
 
 def bicycle_acc():

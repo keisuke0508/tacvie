@@ -8,7 +8,7 @@ DEVICE_NAME = "/dev/cu.usbmodem1411"
 BAUD_RATE = 9600
 
 # udp connect
-IP_ADDRESS = "192.168.1.4"
+IP_ADDRESS = "192.168.0.1"
 PORT_NUMBER = 8000
 
 # for sending data
