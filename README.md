@@ -1,4 +1,4 @@
-# touchable_video
+# tacvie
 
 ### main.py
 CUIでセンサ, アクチュエータを動かす.  
